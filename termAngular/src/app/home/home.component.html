@@ -1,0 +1,24 @@
+<div class="poll-container">
+
+  <app-poll class="card-item" *ngFor="let poll of polls" [poll]="poll" (deleteEvent) = "deletePoll($event)"
+            (voteEvent)="vote($event)"></app-poll>
+
+  <!--<div *ngFor="let parecord of parecords">{{parecord}}</div>-->
+
+
+</div>
+
+
+
+<div class="fab-container">
+  <button mat-flat-button routerLink="/create/0" color="primary"  matTooltip="Add new class" >
+    <i class="material-icons">add</i>
+  </button>
+</div>
+
+
+
+
+
+
+

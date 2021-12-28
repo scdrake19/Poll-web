@@ -1,0 +1,4 @@
+.base {
+  display: grid;
+  column-count: 1;
+}

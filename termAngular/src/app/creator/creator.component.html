@@ -1,0 +1,115 @@
+<div>
+  <p *ngIf="!isNew">Be aware, editing a poll will give it an edit tag</p>
+  <mat-card class="base" *ngIf="isNew">
+    <p style="font-size: 22px">What do you want to poll!</p>
+    <!-- question -->
+
+
+
+    <mat-form-field appearance="standard" *ngIf="isNew">
+      <mat-label>What's your question?</mat-label>
+      <input matInput [formControl]="questionControl"
+      [(ngModel)]="question">
+
+    </mat-form-field>
+
+    <mat-card *ngIf="isNew" class = "base">
+      <mat-label>How can we answer? </mat-label>
+      <div *ngFor="let option of options; index as i">
+        <mat-form-field  appearance="standard">
+          <input matInput [(ngModel)]="option.option">
+          <mat-label>Option {{i + 1}}</mat-label>
+        </mat-form-field >
+        <button mat-button (click)="deleteOption(i)">Delete</button>
+      </div>
+      <div>
+        <button class="cb"mat-button color="accent" (click)="addOption()">Add option</button>
+      </div>
+    </mat-card>
+
+
+    <div>
+      <button *ngIf="isNew" class="cb" routerLink="/" mat-button color="accent" (click)="addRecord()">Save</button>
+    </div>
+
+    <div>
+      <button *ngIf="!isNew" class="cb" routerLink="/" mat-button color="accent" (click)="setRecord()">Save</button>
+    </div>
+  </mat-card>
+
+  <mat-card class="base" *ngIf="!isNew">
+    <p style="font-size: 22px">Want to change your poll?</p>
+    <!-- question -->
+
+
+
+    <mat-form-field appearance="standard" >
+      <input matInput [(ngModel)]="question">
+      <mat-label>What's your question?</mat-label>
+    </mat-form-field>
+
+    <mat-card class = "base">
+      <mat-label>How can we answer?</mat-label>
+      <div *ngFor="let option of options; index as i">
+        <mat-form-field  appearance="standard">
+          <input matInput [(ngModel)]="option.option">
+          <mat-label>Option {{i + 1}}</mat-label>
+         </mat-form-field >
+        <button mat-button (click)="deleteOption(i)">Delete</button>
+      </div>
+      <div>
+        <button class="cb"mat-button color="accent" (click)="addOption()">Add option</button>
+      </div>
+    </mat-card>
+
+
+    <div>
+      <button *ngIf="isNew" class="cb" routerLink="/" mat-button color="accent" (click)="addRecord()">Save</button>
+    </div>
+
+    <div>
+      <button *ngIf="!isNew" class="cb" routerLink="/" mat-button color="accent" (click)="setRecord()">Save</button>
+    </div>
+  </mat-card>
+
+
+
+</div>
+
+
+<!--
+    <mat-form-field appearance="standard" *ngIf="!isNew">
+      <mat-label>{{getValue()}}</mat-label>
+      <mat-select [formControl]="actControl">
+        <mat-option value="1">Run</mat-option>
+        <mat-option value="0">Walk</mat-option>
+        <mat-option value="2">Bike</mat-option>
+      </mat-select >
+    </mat-form-field>
+    -->
+<!-- Date
+<mat-form-field *ngIf="isNew" appearance="standard">
+  <mat-label>Choose the exercise date</mat-label>
+  <input matInput [matDatepicker]="picker" (dateChange)="setDate($event)">
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+</mat-form-field> -->
+
+
+<!-- calories
+<mat-form-field appearance="standard">
+  <mat-label>Calories</mat-label>
+  <input matInput type="number"  max="3000" name="calories" [formControl]="calControl"
+         [(ngModel)]="calories">
+</mat-form-field>
+<mat-slider thumbLabel max="3000" [(ngModel)]="calories"
+            (input)="calories = $event.value"></mat-slider> -->
+<!-- minutes
+<mat-form-field appearance="standard">
+  <mat-label>Minutes</mat-label>
+  <input matInput type="number" min="30" max="360" name="minutes"  [formControl]="minControl"
+         [(ngModel)]="minutes">
+</mat-form-field>
+
+<mat-slider thumbLabel min="30" max="360" [value] = minutes
+            (input)="minutes = $event.value"></mat-slider> -->

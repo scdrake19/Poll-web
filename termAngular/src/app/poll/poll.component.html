@@ -1,0 +1,49 @@
+<mat-card class="polll" *ngIf="poll.votedOn">
+  <mat-label class="headLabel">{{this.poll.question}}</mat-label>
+  <p> </p>
+  <p *ngIf="poll.edited" class="headLabel"> Attention! This poll has been formerly edited, the information
+    it displays may not be fully accurate</p>
+  <div class="chart-wrapper">
+     <canvas baseChart height="100"
+            [datasets]="barChartData"
+            [labels]="barChartLabels"
+            [options]="barChartOptions"
+            [plugins]="barChartPlugins"
+            [legend]="barChartLegend"
+            [chartType]="barChartType">
+     </canvas>
+  </div>
+
+  <p class="stats">Total votes: {{poll.votes}}</p>
+  <p class="stats" *ngFor="let opt of poll.options">{{opt.option}} votes:  {{opt.count}}</p>
+  <div> </div>
+  <p class="stats">Created on {{this.portrayDate}}</p>
+  <p class="stats" >Created by {{poll.createdBy.username}}</p>
+  <div *ngIf="isCreator()" class="buttons">
+    <button mat-button (click)="delete(poll.createdDate)" aria-label="Delete or edit" >Delete
+    </button>
+    <button mat-button (click)="go()" aria-label="Delete or edit" >Edit
+    </button>
+  </div>
+</mat-card>
+
+<mat-card class="polll" *ngIf="!poll.votedOn">
+  <mat-label class="headLabel">{{this.poll.question}}</mat-label>
+  <p> </p>
+  <p *ngIf="poll.edited" class="headLabel"> Attention! This poll has been formerly edited, the information
+    it displays may not be fully accurate</p>
+  <div class="chart-wrapper">
+    <mat-card *ngFor="let opt of poll.options" (click)="vote({poll: poll, option: opt})">{{opt.option}}</mat-card>
+  </div>
+  <p> </p>
+  <p class="stats" >Created on {{this.portrayDate}}</p>
+  <p class="stats" >Created by {{poll.createdBy.username}}</p>
+  <div *ngIf="isCreator()" class="buttons">
+    <button mat-button (click)="delete(poll.createdDate)" aria-label="Delete or edit" >Delete
+    </button>
+    <button mat-button (click)="go()" aria-label="Delete or edit" >Edit
+    </button>
+  </div>
+</mat-card>
+
+

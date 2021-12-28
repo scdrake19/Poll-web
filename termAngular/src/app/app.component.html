@@ -1,0 +1,20 @@
+<mat-toolbar *ngIf="isUser">
+  <!-- <div class="circ">
+    <blockquote class="text">
+      <p>{{firstName}}{{lastName}}</p>
+    </blockquote>
+  </div> -->
+
+  <button mat-button routerLink="/">My polls</button>
+  <button mat-button routerLink="/recent">Recent</button>
+  <!--<button mat-button routerLink="/admin" *ngIf="isAdmin">Users</button>-->
+  <button mat-button routerLink="/popular">Top</button>
+
+
+
+  <button mat-button (click)="logout()">Logout </button>
+</mat-toolbar>
+
+
+<router-outlet></router-outlet>
+
